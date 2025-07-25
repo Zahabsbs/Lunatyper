@@ -4,7 +4,7 @@ Turn your keyboard into a glowing piano under the stars.
 
 [🌐 Live Demo](https://zahabsbs.github.io/Lunatyper/)
 
-![Lunatyper Demo] [IMG-7716-ezgif-com-video-to-gif-converter.gif](https://postimg.cc/FfKqzY3j)
+![Lunatyper Demo] [[IMG-7716-ezgif-com-video-to-gif-converter.gif](https://postimg.cc/FfKqzY3j)](https://i.postimg.cc/tgdHrPgm/IMG-7716-ezgif-com-video-to-gif-converter.gif)
 
 ---
 
