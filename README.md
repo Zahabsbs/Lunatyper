@@ -1,37 +1,46 @@
-# Lunatyper 🎹✨
+# 🎹 Lunatyper — Glow in the Moonlight
 
-An interactive music synthesizer that turns your keyboard into a glowing piano under the moonlight.
+Turn your keyboard into a glowing piano under the stars.
 
-**[Live Demo Link]** (https://zahabsbs.github.io/Lunatyper/)
+[🌐 Live Demo](https://zahabsbs.github.io/Lunatyper/)
 
-![Lunatyper Gif](https://i.postimg.cc/tgdHrPgm/IMG-7716-ezgif-com-video-to-gif-converter.gif)
+![Lunatyper Demo](https://i.postimg.cc/tgdHrPgm/IMG-7716-ezgif-com-video-to-gif-converter.gif)
+
+---
 
 ## 🌟 Features
 
-*   **Two Play Modes:**
-    *   **Free Play:** Freely play the piano using your computer keyboard. Each note is accompanied by a unique color and light effect.
-    *   **Moonlight Sonata:** Try to play Beethoven's famous "Moonlight Sonata." The app will highlight the next key to press.
-*   **Visual Effects:**
-    *   **Dynamic Background:** An atmospheric background that changes depending on the selected mode.
-    *   **Animated Effects:** Each keypress creates beautiful light waves and particle bursts.
-    *   **"Lunar" Cursor:** A spot of light that follows your cursor, adding to the magic.
-*   **High-Quality Sound:** Uses `Tone.js` to generate realistic grand piano sound with reverb effects.
+🎵 **Two Play Modes**
+- **Free Play:** Play freely with color and light on every key.
+- **Moonlight Sonata:** Follow the cues to play Beethoven’s classic.
+
+🌌 **Visual Magic**
+- Dynamic backgrounds based on mode.
+- Beautiful light waves and particle effects on keypress.
+- Lunar cursor that follows your mouse.
+
+🔊 **Rich Sound**
+- Built with `Tone.js` for realistic piano sounds and reverb.
+
+---
 
 ## 🚀 How to Use
 
-1.  Open `index.html` in your browser.
-2.  Click anywhere to load the sound samples.
-3.  Use the keys on your keyboard (letter and number rows) to play the piano.
-4.  Switch between "Free Play" and "Moonlight Sonata" modes in the top-left corner.
+1. Open `index.html` in your browser.
+2. Click anywhere to enable sound.
+3. Use your keyboard (letters + numbers) to play notes.
+4. Switch between modes via top-left menu.
 
-## 🛠️ Technologies Used
+---
 
-*   **HTML5**
-*   **CSS3** (with animations and custom properties)
-*   **JavaScript (ES6+)**
-*   **[Tone.js](https://tonejs.github.io/)** - for advanced audio processing.
-*   **[GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)** - for smooth and complex animations.
+## 🛠️ Built With
+
+- **HTML5**, **CSS3**, **JavaScript (ES6+)**
+- 🎶 [Tone.js](https://tonejs.github.io/)
+- 🎨 [GSAP (GreenSock)](https://greensock.com/gsap/)
+
+---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License
