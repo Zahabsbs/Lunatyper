@@ -1,0 +1,399 @@
+:root {
+    --bg-color: #000212;
+    --glow-color-dynamic: rgba(45, 215, 255, 0.5); /* Will be changed by JS */
+    --key-bg: rgba(26, 28, 46, 0.2);
+    --key-border: rgba(100, 255, 255, 0.2);
+    --key-shadow: rgba(45, 215, 255, 0.5);
+    --text-color: #E0E0E0;
+    --title-font: 'Orbitron', sans-serif;
+    --body-font: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #000;
+}
+
+@keyframes move-bg {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+#dynamic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 0;
+    z-index: -3;
+}
+
+#moon-mode-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -4; /* Deepest layer */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#moon-mode-bg .stars, #moon-mode-bg .twinkling, #moon-mode-bg .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#moon-mode-bg .stars {
+    background: #000; /* Ensure black background */
+}
+
+#moon-mode-bg .twinkling {
+    /* --- New, 100% Reliable CSS Starfield --- */
+    /* This creates a pattern of different-sized white dots that repeats */
+    background:
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 150px 120px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 180px 80px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: move-twink-back 150s linear infinite; /* Slightly faster animation */
+}
+
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+
+#moon {
+    position: absolute;
+    left: 50%;
+    top: 110%; /* Start below screen */
+    width: 220px;  /* Increased size */
+    height: 220px; /* Increased size */
+    background-image: url('https://www.stickpng.com/assets/images/580b585b2edb1692e000000e.png'); /* --- FIX: Replaced broken link --- */
+    background-color: #000; /* --- THE FIX: Prevents stars from showing through --- */
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 50px 10px rgba(255, 255, 230, 0.3);
+    transform: translateX(-50%);
+    transition: top 4s ease-out, box-shadow 4s ease-in-out, transform 4s ease-in-out;
+    animation: moon-pulse 8s ease-in-out infinite alternate;
+    z-index: 2; /* Added to ensure stars are behind the moon */
+}
+
+/* --- New Mode Selector Styles --- */
+#mode-selector {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+}
+
+.mode-option {
+    font-family: var(--title-font);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.mode-option.active {
+    color: #fff;
+    text-shadow: 0 0 8px #fff, 0 0 15px var(--key-shadow);
+}
+/* -------------------------------- */
+
+/* --- Loading Overlay --- */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+}
+.loading-text {
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-shadow: 0 0 10px var(--key-shadow);
+}
+/* --------------------- */
+
+
+@keyframes moon-pulse {
+    to {
+        transform: translateX(-50%) scale(1.05) rotate(1deg);
+        box-shadow: 0 0 70px 15px rgba(255, 255, 230, 0.4);
+    }
+}
+
+
+.ripple {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.note-trail {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+#cursor-light {
+    position: fixed;
+    top: 0;   /* Explicitly set for a reliable anchor point */
+    left: 0;  /* Explicitly set for a reliable anchor point */
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow-color-dynamic) 0%, rgba(0, 255, 255, 0) 50%);
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(50px);
+    will-change: transform;
+    transform: scale(0); /* JS will handle positioning */
+}
+
+body.sonata-mode #cursor-light {
+    /* --- Sonata Projector Style --- */
+    /* Making it very dim, larger, and a cold color */
+    background: radial-gradient(circle, rgba(150, 160, 200, 0.3) 0%, rgba(150, 160, 200, 0) 60%);
+    opacity: 0.6;
+    filter: blur(60px); /* More blur for a softer look */
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.main-content {
+    display: grid;
+    place-items: center;
+    gap: 40px;
+}
+
+.title {
+    font-family: var(--title-font);
+    font-size: 4rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #4f46e5, #be185d, #4f46e5);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: text-glow 10s linear infinite;
+}
+
+@keyframes text-glow {
+    to {
+        background-position: -200% center;
+    }
+}
+
+.keyboard {
+    background: var(--key-bg);
+    border: 1px solid var(--key-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 0 10px rgba(100, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 2;
+    margin-top: 100px; /* Added to move the keyboard down a bit */
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.key {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.key.pressed {
+    transform: translateY(2px);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+
+.key .note-name {
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    opacity: 0.7; /* Always visible but subtle */
+    font-size: 0.7rem;
+    color: var(--text-color);
+    pointer-events: none;
+}
+
+.key:hover .note-name {
+    opacity: 1;
+}
+
+.key.prompt {
+    animation: prompt-glow 1.5s infinite alternate;
+}
+
+@keyframes prompt-glow {
+    from {
+        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--key-shadow);
+    }
+    to {
+        box-shadow: 0 0 20px var(--key-shadow), 0 0 30px var(--key-shadow), 0 0 40px var(--key-shadow);
+    }
+}
+
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 200px;
+}
+
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--key-border);
+    border-radius: 8px;
+}
+
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-color);
+    background: transparent;
+    cursor: pointer;
+}
+
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid var(--key-border);
+    border-top: 0;
+    border-radius: 0 0 8px 8px;
+    background: var(--bg-color);
+    transition: all 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-option:hover {
+    background-color: var(--key-border);
+    color: var(--bg-color);
+} 

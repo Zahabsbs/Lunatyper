@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunatyper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="dynamic-bg"></div>
+    <div id="moon-mode-bg">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div id="moon"></div>
+    </div>
+
+    <div id="mode-selector">
+        <span data-value="free" class="mode-option active">Free Play</span>
+        <span data-value="auto" class="mode-option">Moonlight Sonata</span>
+    </div>
+
+    <div id="cursor-light"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div id="fx-container"></div>
+
+    <div id="loading-overlay">
+        <div class="loading-text">Loading Instruments...</div>
+    </div>
+
+    <main class="main-content">
+        <h1 class="title">Lunatyper</h1>
+
+        <!-- The old controls div is now removed -->
+
+        <div id="keyboard" class="keyboard">
+            <div class="keyboard-row">
+                <div data-key="Digit1" class="key"><span>1</span></div>
+                <div data-key="Digit2" class="key"><span>2</span></div>
+                <div data-key="Digit3" class="key"><span>3</span></div>
+                <div data-key="Digit4" class="key"><span>4</span></div>
+                <div data-key="Digit5" class="key"><span>5</span></div>
+                <div data-key="Digit6" class="key"><span>6</span></div>
+                <div data-key="Digit7" class="key"><span>7</span></div>
+                <div data-key="Digit8" class="key"><span>8</span></div>
+                <div data-key="Digit9" class="key"><span>9</span></div>
+                <div data-key="Digit0" class="key"><span>0</span></div>
+            </div>
+            <div class="keyboard-row">
+                <div data-key="KeyQ" class="key"><span>Q</span></div>
+                <div data-key="KeyW" class="key"><span>W</span></div>
+                <div data-key="KeyE" class="key"><span>E</span></div>
+                <div data-key="KeyR" class="key"><span>R</span></div>
+                <div data-key="KeyT" class="key"><span>T</span></div>
+                <div data-key="KeyY" class="key"><span>Y</span></div>
+                <div data-key="KeyU" class="key"><span>U</span></div>
+                <div data-key="KeyI" class="key"><span>I</span></div>
+                <div data-key="KeyO" class="key"><span>O</span></div>
+                <div data-key="KeyP" class="key"><span>P</span></div>
+                <div data-key="BracketLeft" class="key"><span>[</span></div>
+                <div data-key="BracketRight" class="key"><span>]</span></div>
+            </div>
+            <div class="keyboard-row">
+                <div data-key="KeyA" class="key"><span>A</span></div>
+                <div data-key="KeyS" class="key"><span>S</span></div>
+                <div data-key="KeyD" class="key"><span>D</span></div>
+                <div data-key="KeyF" class="key"><span>F</span></div>
+                <div data-key="KeyG" class="key"><span>G</span></div>
+                <div data-key="KeyH" class="key"><span>H</span></div>
+                <div data-key="KeyJ" class="key"><span>J</span></div>
+                <div data-key="KeyK" class="key"><span>K</span></div>
+                <div data-key="KeyL" class="key"><span>L</span></div>
+                <div data-key="Semicolon" class="key"><span>;</span></div>
+                <div data-key="Quote" class="key"><span>'</span></div>
+            </div>
+            <div class="keyboard-row">
+                <div data-key="KeyZ" class="key"><span>Z</span></div>
+                <div data-key="KeyX" class="key"><span>X</span></div>
+                <div data-key="KeyC" class="key"><span>C</span></div>
+                <div data-key="KeyV" class="key"><span>V</span></div>
+                <div data-key="KeyB" class="key"><span>B</span></div>
+                <div data-key="KeyN" class="key"><span>N</span></div>
+                <div data-key="KeyM" class="key"><span>M</span></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
